@@ -1,5 +1,7 @@
 package org.hangman;
 
+import java.util.Random;
+
 public class Word {
 
     private static final String[] regularLevel = {
@@ -21,5 +23,17 @@ public class Word {
             "Unpredictable", "Inconsequential", "Disproportionate",
             "Anthropologist", "Philosophical"
     };
+
+    /**
+     * Selects a random word from an array of words.
+     *
+     * @param words An array of words from which to select a random word.
+     * @return A randomly selected word from the array.
+     */
+    public static String selectRandomWord(String[] words) {
+        Random random = new Random();
+        int randomIndex = random.nextInt(words.length);
+        return words[randomIndex];
+    }
 
 }
