@@ -1,15 +1,19 @@
 package org.hangman;
 
+import java.util.ArrayList;
+
 public class GameState {
 
     private String currentWord;
     private String hiddenWord;
     private int playerLives;
+    private ArrayList<Character> guessedLetters;
 
-    public GameState(String currentWord, String hiddenWord, int playerLives) {
+    public GameState(String currentWord, String hiddenWord, int playerLives, ArrayList<Character> guessedLetters) {
         this.currentWord = currentWord;
         this.hiddenWord = hiddenWord;
         this.playerLives = playerLives;
+        this.guessedLetters = guessedLetters;
     }
 
     public String getCurrentWord() {
@@ -34,6 +38,14 @@ public class GameState {
 
     public void setPlayerLives(int playerLives) {
         this.playerLives = playerLives;
+    }
+
+    public ArrayList<Character> getGuessedLetters() {
+        return guessedLetters;
+    }
+
+    public void setGuessedLetters(ArrayList<Character> guessedLetters) {
+        this.guessedLetters = guessedLetters;
     }
 
     /**
@@ -67,9 +79,34 @@ public class GameState {
         return mysteryWord;
     }
 
-    public void trackProgress(int lives) {
+    // Add comment when logic is tested
+    public void trackPlayerLives(int lives, boolean gameOver, boolean hasWon) {
         if (lives == 0) {
-            //game over
+            gameOver = true;
         }
+        if (!hiddenWord.contains("_")) {
+            hasWon = true;
+        }
+    }
+
+    /**
+     * Appends a guessed letters array with new letters.
+     *
+     * @param letter The letter guessed by the player.
+     */
+    public void appendGuessedLetters(char letter) {
+        if (!guessedLetters.contains(letter)) {
+            guessedLetters.add(letter);
+        }
+    }
+
+    /**
+     * Checks if the guessed letter is already present in the array list.
+     *
+     * @param letter The letter to be checked.
+     * @return True if the letter is already guessed, false otherwise.
+     */
+    public boolean containsGuessedLetter(char letter) {
+        return guessedLetters.contains(letter);
     }
 }
