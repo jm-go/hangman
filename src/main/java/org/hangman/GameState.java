@@ -6,13 +6,11 @@ public class GameState {
 
     private String currentWord;
     private String hiddenWord;
-    private int playerLives;
     private ArrayList<Character> guessedLetters;
 
-    public GameState(String currentWord, String hiddenWord, int playerLives, ArrayList<Character> guessedLetters) {
+    public GameState(String currentWord, String hiddenWord, ArrayList<Character> guessedLetters) {
         this.currentWord = currentWord;
         this.hiddenWord = hiddenWord;
-        this.playerLives = playerLives;
         this.guessedLetters = guessedLetters;
     }
 
@@ -32,13 +30,6 @@ public class GameState {
         this.hiddenWord = hiddenWord;
     }
 
-    public int getPlayerLives() {
-        return playerLives;
-    }
-
-    public void setPlayerLives(int playerLives) {
-        this.playerLives = playerLives;
-    }
 
     public ArrayList<Character> getGuessedLetters() {
         return guessedLetters;
@@ -69,14 +60,13 @@ public class GameState {
     // Add comment when logic has been tested
     public String updateMysteryWord(char letter, String mysteryWord, String currentWord) {
         char[] currentWordArray = currentWord.toCharArray();
+        char[] mysteryWordArray = mysteryWord.toCharArray();
         for (int i = 0; i < currentWordArray.length; i++) {
             if (currentWordArray[i] == letter) {
-                char[] mysteryWordArray = mysteryWord.toCharArray();
                 mysteryWordArray[i] = letter;
-                return new String(mysteryWordArray);
             }
         }
-        return mysteryWord;
+        return new String(mysteryWordArray);
     }
 
     // Add comment when logic is tested
@@ -98,15 +88,5 @@ public class GameState {
         if (!guessedLetters.contains(letter)) {
             guessedLetters.add(letter);
         }
-    }
-
-    /**
-     * Checks if the guessed letter is already present in the array list.
-     *
-     * @param letter The letter to be checked.
-     * @return True if the letter is already guessed, false otherwise.
-     */
-    public boolean containsGuessedLetter(char letter) {
-        return guessedLetters.contains(letter);
     }
 }

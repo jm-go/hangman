@@ -1,11 +1,14 @@
 package org.hangman;
 
+
 public class GameController {
 
     private Commands commands;
+    private int playerLives = 6;
 
-    public GameController(Commands commands) {
+    public GameController(Commands commands, int playerLives) {
         this.commands = commands;
+        this.playerLives = playerLives;
     }
 
     public GameController() {
@@ -25,8 +28,11 @@ public class GameController {
 
             if (intInput == 0) {
                 System.out.println("\nStarting a regular game...");
+                Word.selectRandomWord(Word.getRegularLevel());
+                Gallows.displayGallows(playerLives);
             } else if (intInput == 1) {
                 System.out.println("\nStarting an advanced game...");
+                Word.selectRandomWord(Word.getAdvancedLevel());
             } else if (intInput == 2) {
                 System.out.println("\nQuitting the game. Goodbye!");
                 break;

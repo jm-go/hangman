@@ -24,6 +24,14 @@ public class Word {
             "Anthropologist", "Philosophical"
     };
 
+    public static String[] getRegularLevel() {
+        return regularLevel;
+    }
+
+    public static String[] getAdvancedLevel() {
+        return advancedLevel;
+    }
+
     /**
      * Selects a random word from an array of words.
      *
