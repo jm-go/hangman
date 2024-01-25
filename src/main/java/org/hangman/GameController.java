@@ -4,16 +4,20 @@ import java.util.Collections;
 
 public class GameController {
 
-    private Commands commands;
+    private PlayerInteraction commands;
     private Word currentWord;
 
     public GameController() {
-        commands = new Commands();
+        commands = new PlayerInteraction();
         String[] commandOptions = new String[]{"Regular", "Advanced", "Quit"};
         commands.setCommands(commandOptions);
     }
 
-    // add comment when the function is refactored
+    /**
+     * Starts the Hangman game, allowing the player to select a difficulty level.
+     * Manages the game flow based on the player's choice, including starting the game at different
+     * levels or quitting. Invalid inputs prompt for a correct selection.
+     */
     public void startGame() {
         System.out.println("\nWelcome to Hangman!");
         System.out.println("Please choose the level of difficulty:");
@@ -39,21 +43,29 @@ public class GameController {
         }
     }
 
-    //add comment
+    /**
+     * Initialises and starts a regular-level Hangman game.
+     * Chooses a word from the RegularWord class, and then
+     * proceeds to the main gameplay loop.
+     */
     private void startRegularGame() {
         System.out.println("\nStarting a regular game...\n");
         currentWord = new RegularWord();
         playGame();
     }
 
-    // add comment
+    /**
+     * Initialises and starts an advanced-level Hangman game.
+     * Selects a word from the AdvancedWord class, and then
+     * transitions to the main gameplay loop.
+     */
     private void startAdvancedGame() {
         System.out.println("\nStarting an advanced game...\n");
         currentWord = new AdvancedWord();
         playGame();
     }
 
-    // Add comment when the function nis refactored
+    // Add comment when the function is refactored
     private void playGame() {
         GameState gameState = new GameState(currentWord);
         Gallows.displayGallows(gameState.getPlayerLives());
@@ -84,7 +96,6 @@ public class GameController {
             Gallows.displayGallows(gameState.getPlayerLives());
             endOfGame = gameState.checkProgress();
         }
-
         gameState.showEndGameMessage();
     }
 }
