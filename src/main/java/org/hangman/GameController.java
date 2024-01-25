@@ -5,11 +5,7 @@ public class GameController {
 
     private Commands commands;
     private int playerLives = 6;
-
-    public GameController(Commands commands, int playerLives) {
-        this.commands = commands;
-        this.playerLives = playerLives;
-    }
+    private Word currentWord;
 
     public GameController() {
         commands = new Commands();
@@ -26,19 +22,41 @@ public class GameController {
 
             int intInput = commands.getIntegerInput();
 
-            if (intInput == 0) {
-                System.out.println("\nStarting a regular game...");
-                Word.selectRandomWord(Word.getRegularLevel());
-                Gallows.displayGallows(playerLives);
-            } else if (intInput == 1) {
-                System.out.println("\nStarting an advanced game...");
-                Word.selectRandomWord(Word.getAdvancedLevel());
-            } else if (intInput == 2) {
-                System.out.println("\nQuitting the game. Goodbye!");
-                break;
-            } else {
-                System.out.println("Invalid input. Please select a valid option.");
+            switch (intInput) {
+                case 0:
+                    startRegularGame();
+                    break;
+                case 1:
+                    startAdvancedGame();
+                    break;
+                case 2:
+                    System.out.println("\nQuitting the game. Goodbye!");
+                    return;
+                default:
+                    System.out.println("Invalid input. Please select a valid option.");
+                    break;
             }
         }
+    }
+
+    private void startRegularGame() {
+        System.out.println("\nStarting a regular game...");
+        currentWord = new RegularWord();
+        playerLives = 6;
+        playGame();
+    }
+
+    private void startAdvancedGame() {
+        System.out.println("\nStarting an advanced game...");
+        currentWord = new AdvancedWord();
+        playerLives = 3;
+        playGame();
+    }
+
+    private void playGame() {
+        String wordToGuess = currentWord.selectRandomWord();
+        Gallows.displayGallows(playerLives);
+
+        // Add logic
     }
 }
