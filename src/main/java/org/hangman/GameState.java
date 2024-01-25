@@ -90,6 +90,7 @@ public class GameState {
         for (int i = 0; i < wordWithUnderscores.length(); i++) {
             System.out.print(wordWithUnderscores.charAt(i) + " ");
         }
+        System.out.println("\nGuessed letters: " + getGuessedLetters());
     }
 
     /**

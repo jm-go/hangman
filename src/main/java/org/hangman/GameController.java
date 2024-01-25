@@ -47,7 +47,7 @@ public class GameController {
      * proceeds to the main gameplay loop.
      */
     private void startRegularGame() {
-        System.out.println("\nStarting a regular game...\n");
+        System.out.println("\nStarting a Regular game...\n");
         currentWord = new RegularWord();
         playGame();
     }
@@ -58,7 +58,7 @@ public class GameController {
      * transitions to the main gameplay loop.
      */
     private void startAdvancedGame() {
-        System.out.println("\nStarting an advanced game...\n");
+        System.out.println("\nStarting an Advanced game...\n");
         currentWord = new AdvancedWord();
         playGame();
     }
@@ -71,8 +71,6 @@ public class GameController {
         while (!endOfGame) {
 
             gameState.displayGameStatus();
-            System.out.println();
-            System.out.println("Guessed letters: " + gameState.getGuessedLetters());
             char guessedLetter = commands.getLetterInput();
 
             if (gameState.getGuessedLetters().contains(guessedLetter)) {
