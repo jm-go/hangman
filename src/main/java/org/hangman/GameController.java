@@ -66,31 +66,15 @@ public class GameController {
     // Add comment when the function is refactored
     private void playGame() {
         GameState gameState = new GameState(currentWord);
-        Gallows.displayGallows(gameState.getPlayerLives());
-        boolean endOfGame = false;
-        while (!endOfGame) {
+        HandleGuess handleGuess = new HandleGuess(gameState);
 
+        Gallows.displayGallows(gameState.getPlayerLives());
+
+        while (!gameState.checkProgress()) {
             gameState.displayGameStatus();
             char guessedLetter = commands.getLetterInput();
-
-            if (gameState.getGuessedLetters().contains(guessedLetter)) {
-                System.out.println("You have already guessed the letter: " + guessedLetter);
-            } else {
-                gameState.appendGuessedLetters(guessedLetter);
-
-                if (gameState.getCurrentWord().contains(String.valueOf(guessedLetter))) {
-                    String updatedHiddenWord = gameState.updateMysteryWord(
-                            guessedLetter, gameState.getHiddenWord(), gameState.getCurrentWord());
-                    gameState.setHiddenWord(updatedHiddenWord);
-
-                    System.out.println("Correct guess! Lives remaining: " + gameState.getPlayerLives() + "\n");
-                } else {
-                    gameState.decrementPlayerLives();
-                    System.out.println("Incorrect guess. Lives remaining: " + gameState.getPlayerLives() + "\n");
-                }
-            }
+            handleGuess.checkGuess(guessedLetter);
             Gallows.displayGallows(gameState.getPlayerLives());
-            endOfGame = gameState.checkProgress();
         }
         gameState.showEndGameMessage();
     }

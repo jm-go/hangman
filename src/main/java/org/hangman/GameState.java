@@ -1,7 +1,6 @@
 package org.hangman;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class GameState {
 
@@ -84,6 +83,10 @@ public class GameState {
         return new String(mysteryWordArray);
     }
 
+    /**
+     * Displays the current status of the game.
+     * Shows the mystery word and a list of already used letters.
+     */
     public void displayGameStatus() {
         String wordWithUnderscores = getHiddenWord();
         System.out.print("Mystery Word: ");
@@ -112,18 +115,6 @@ public class GameState {
             System.out.println("Congratulations, you won! The word was: " + this.getCurrentWord());
         } else {
             System.out.println("Game over! The word was: " + this.getCurrentWord());
-        }
-    }
-
-    /**
-     * Appends a guessed letters array with new letters.
-     *
-     * @param letter The letter guessed by the player.
-     */
-    public void appendGuessedLetters(char letter) {
-        if (!guessedLetters.contains(letter)) {
-            guessedLetters.add(letter);
-            Collections.sort(guessedLetters);
         }
     }
 }
