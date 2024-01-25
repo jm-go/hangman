@@ -3,6 +3,7 @@ package org.hangman.game;
 import org.hangman.ui.Gallows;
 import org.hangman.ui.PlayerInteraction;
 import org.hangman.words.AdvancedWord;
+import org.hangman.words.BeginnerWord;
 import org.hangman.words.RegularWord;
 import org.hangman.words.Word;
 
@@ -13,7 +14,7 @@ public class GameController {
 
     public GameController() {
         commands = new PlayerInteraction();
-        String[] commandOptions = new String[]{"Play Regular Level", "Play Advanced Level", "Quit Game"};
+        String[] commandOptions = new String[]{"Play Beginner Level", "Play Regular Level", "Play Advanced Level", "Quit Game"};
         commands.setCommands(commandOptions);
     }
 
@@ -32,12 +33,15 @@ public class GameController {
 
             switch (intInput) {
                 case 0:
-                    startRegularGame();
+                    startBeginnerGame();
                     break;
                 case 1:
-                    startAdvancedGame();
+                    startRegularGame();
                     break;
                 case 2:
+                    startAdvancedGame();
+                    break;
+                case 3:
                     System.out.println("\nQuitting the game. Goodbye!");
                     return;
                 default:
@@ -45,6 +49,17 @@ public class GameController {
                     break;
             }
         }
+    }
+
+    /**
+     * Initialises and starts a beginner-level Hangman game.
+     * Selects a word from the BeginnerWord class, and then
+     * transitions to the main gameplay loop.
+     */
+    private void startBeginnerGame() {
+        System.out.println("\nStarting a Beginner game...\n");
+        currentWord = new BeginnerWord();
+        playGame();
     }
 
     /**
