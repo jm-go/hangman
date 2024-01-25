@@ -10,5 +10,10 @@ public abstract class Word {
      */
     public abstract String selectRandomWord();
 
+    /**
+     * Retrieves the number of player's lives based on the chosen difficulty level.
+     *
+     * @return The number of lives for the game.
+     */
     public abstract int getLives();
 }

@@ -41,7 +41,10 @@ public class GameState {
         return guessedLetters;
     }
 
-    // add comment
+    /**
+     * Decreases the number of lives the player has by one.
+     * This method is only called when the player makes an incorrect guess.
+     */
     public void decrementPlayerLives() {
         setPlayerLives(getPlayerLives() - 1);
     }
@@ -64,7 +67,14 @@ public class GameState {
         return mysteryWord.toString();
     }
 
-    // Add comment when logic has been tested
+    /**
+     * Updates the hidden word representation based on the player's correct guess.
+     *
+     * @param letter      The letter guessed by the player.
+     * @param mysteryWord The current hidden representation of the word.
+     * @param currentWord The actual word the player is trying to guess.
+     * @return The updated hidden representation of the word.
+     */
     public String updateMysteryWord(char letter, String mysteryWord, String currentWord) {
         char[] currentWordArray = currentWord.toCharArray();
         char[] mysteryWordArray = mysteryWord.toCharArray();
@@ -76,17 +86,25 @@ public class GameState {
         return new String(mysteryWordArray);
     }
 
-    // Add comment when logic is tested
+    /**
+     * Checks the progress of the game to determine if it has ended.
+     * The game ends either when the player runs out of lives or successfully guesses the word.
+     *
+     * @return true if the game is over, false otherwise.
+     */
     public boolean checkProgress() {
         return getPlayerLives() <= 0 || !getHiddenWord().contains("_");
     }
 
-    //add comment
+    /**
+     * Displays the end-game message, indicating whether the player won or lost.
+     * Shows the correct word at the end of the game.
+     */
     public void showEndGameMessage() {
         if (getPlayerLives() > 0) {
-            System.out.println("Congratulations, you won! The word was: " + getCurrentWord());
+            System.out.println("Congratulations, you won! The word was: " + this.getCurrentWord());
         } else {
-            System.out.println("Game over! The word was: " + getCurrentWord());
+            System.out.println("Game over! The word was: " + this.getCurrentWord());
         }
     }
 

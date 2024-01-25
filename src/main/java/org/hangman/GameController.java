@@ -13,13 +13,13 @@ public class GameController {
         commands.setCommands(commandOptions);
     }
 
+    // add comment when the function is refactored
     public void startGame() {
         System.out.println("\nWelcome to Hangman!");
         System.out.println("Please choose the level of difficulty:");
 
         while (true) {
             commands.printCommands();
-
             int intInput = commands.getIntegerInput();
 
             switch (intInput) {
@@ -39,19 +39,21 @@ public class GameController {
         }
     }
 
+    //add comment
     private void startRegularGame() {
         System.out.println("\nStarting a regular game...\n");
         currentWord = new RegularWord();
         playGame();
     }
 
+    // add comment
     private void startAdvancedGame() {
         System.out.println("\nStarting an advanced game...\n");
         currentWord = new AdvancedWord();
         playGame();
     }
 
-
+    // Add comment when the function nis refactored
     private void playGame() {
         GameState gameState = new GameState(currentWord);
         Gallows.displayGallows(gameState.getPlayerLives());
@@ -82,7 +84,6 @@ public class GameController {
             Gallows.displayGallows(gameState.getPlayerLives());
             endOfGame = gameState.checkProgress();
         }
-
 
         gameState.showEndGameMessage();
     }

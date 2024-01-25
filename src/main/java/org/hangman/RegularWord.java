@@ -13,7 +13,6 @@ public class RegularWord extends Word {
             "Sunlight", "Treasure", "Umbrella",
             "Volcano", "Whistle"
     };
-
     private static final int lives = 6;
 
     /**
@@ -28,8 +27,11 @@ public class RegularWord extends Word {
         return words[randomIndex];
     }
 
-
-    // Add comment
+    /**
+     * Gets the number of lives for the regular level of the game.
+     *
+     * @return The fixed number of lives for regular words, which is 6.
+     */
     @Override
     public int getLives() {
         return lives;
