@@ -60,14 +60,6 @@ public class Gallows {
                     "=========\n"
     };
 
-    public static String[] getGallows() {
-        return gallows;
-    }
-
-    public static void setGallows(String[] gallows) {
-        Gallows.gallows = gallows;
-    }
-
     /**
      * Displays the gallows based on the player's remaining lives.
      *

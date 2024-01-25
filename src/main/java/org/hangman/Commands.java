@@ -20,13 +20,18 @@ public class Commands {
         if (commands == null || commands.length == 0) {
             System.out.println("No current commands set.");
         } else {
-//            System.out.println("Please select an option.");
             for (int i = 0; i < commands.length; i++) {
                 System.out.println(i + ": " + commands[i]);
             }
         }
     }
 
+    /**
+     * Retrieves an integer input from the user within the range of available commands.
+     * It continues to prompt the user until a valid integer is entered.
+     *
+     * @return The validated integer input within the specified range.
+     */
     public Integer getIntegerInput() {
         while (true) {
             if (scanner.hasNextInt()) {

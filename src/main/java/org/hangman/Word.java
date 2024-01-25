@@ -9,4 +9,6 @@ public abstract class Word {
      * @return A randomly selected word.
      */
     public abstract String selectRandomWord();
+
+    public abstract int getLives();
 }

@@ -14,6 +14,8 @@ public class RegularWord extends Word {
             "Volcano", "Whistle"
     };
 
+    private static final int lives = 6;
+
     /**
      * Selects a random word from an array of words.
      *
@@ -24,5 +26,12 @@ public class RegularWord extends Word {
         Random random = new Random();
         int randomIndex = random.nextInt(words.length);
         return words[randomIndex];
+    }
+
+
+    // Add comment
+    @Override
+    public int getLives() {
+        return lives;
     }
 }

@@ -1,10 +1,10 @@
 package org.hangman;
 
+import java.util.Collections;
 
 public class GameController {
 
     private Commands commands;
-    private int playerLives = 6;
     private Word currentWord;
 
     public GameController() {
@@ -40,28 +40,50 @@ public class GameController {
     }
 
     private void startRegularGame() {
-        System.out.println("\nStarting a regular game...");
-        System.out.println();
+        System.out.println("\nStarting a regular game...\n");
         currentWord = new RegularWord();
-        playerLives = 6;
         playGame();
     }
 
     private void startAdvancedGame() {
-        System.out.println("\nStarting an advanced game...");
-        System.out.println();
+        System.out.println("\nStarting an advanced game...\n");
         currentWord = new AdvancedWord();
-        playerLives = 3;
         playGame();
     }
 
-    private void playGame() {
-        String wordToGuess = currentWord.selectRandomWord();
-        Gallows.displayGallows(playerLives);
-        System.out.println(GameState.generateMysteryWord(wordToGuess));
-        System.out.println("You have " + playerLives + " lives left.\n");
-        System.out.println();
 
-        // Add logic
+    private void playGame() {
+        GameState gameState = new GameState(currentWord);
+        Gallows.displayGallows(gameState.getPlayerLives());
+        boolean endOfGame = false;
+        while (!endOfGame) {
+
+            System.out.println("Mystery Word: " + gameState.getHiddenWord());
+            Collections.sort(gameState.getGuessedLetters());
+            System.out.println("Guessed letters: " + gameState.getGuessedLetters());
+            char guessedLetter = commands.getLetterInput();
+
+            if (gameState.getGuessedLetters().contains(guessedLetter)) {
+                System.out.println("You have already guessed the letter: " + guessedLetter);
+            } else {
+                gameState.appendGuessedLetters(guessedLetter);
+
+                if (gameState.getCurrentWord().contains(String.valueOf(guessedLetter))) {
+                    String updatedHiddenWord = gameState.updateMysteryWord(
+                            guessedLetter, gameState.getHiddenWord(), gameState.getCurrentWord());
+                    gameState.setHiddenWord(updatedHiddenWord);
+
+                    System.out.println("Correct guess!");
+                } else {
+                    gameState.decrementPlayerLives();
+                    System.out.println("Incorrect guess. Lives remaining: " + gameState.getPlayerLives());
+                }
+            }
+            Gallows.displayGallows(gameState.getPlayerLives());
+            endOfGame = gameState.checkProgress();
+        }
+
+
+        gameState.showEndGameMessage();
     }
 }

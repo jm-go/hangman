@@ -14,6 +14,8 @@ public class AdvancedWord extends Word {
             "Anthropologist", "Philosophical"
     };
 
+    private static final int lives = 3;
+
     /**
      * Selects a random word from an array of words.
      *
@@ -24,5 +26,11 @@ public class AdvancedWord extends Word {
         Random random = new Random();
         int randomIndex = random.nextInt(words.length);
         return words[randomIndex];
+    }
+
+    // add comment
+    @Override
+    public int getLives() {
+        return lives;
     }
 }

@@ -5,21 +5,28 @@ import java.util.ArrayList;
 public class GameState {
 
     private String currentWord;
+    private int playerLives;
     private String hiddenWord;
     private ArrayList<Character> guessedLetters;
 
-    public GameState(String currentWord, String hiddenWord, ArrayList<Character> guessedLetters) {
-        this.currentWord = currentWord;
-        this.hiddenWord = hiddenWord;
-        this.guessedLetters = guessedLetters;
+
+    public GameState(Word currentWord) {
+        this.currentWord = currentWord.selectRandomWord().toUpperCase();
+        this.playerLives = currentWord.getLives();
+        this.hiddenWord = generateMysteryWord(this.currentWord);
+        this.guessedLetters = new ArrayList<>();
+    }
+
+    public int getPlayerLives() {
+        return playerLives;
+    }
+
+    public void setPlayerLives(int playerLives) {
+        this.playerLives = playerLives;
     }
 
     public String getCurrentWord() {
         return currentWord;
-    }
-
-    public void setCurrentWord(String currentWord) {
-        this.currentWord = currentWord;
     }
 
     public String getHiddenWord() {
@@ -34,8 +41,9 @@ public class GameState {
         return guessedLetters;
     }
 
-    public void setGuessedLetters(ArrayList<Character> guessedLetters) {
-        this.guessedLetters = guessedLetters;
+    // add comment
+    public void decrementPlayerLives() {
+        setPlayerLives(getPlayerLives() - 1);
     }
 
     /**
@@ -45,7 +53,7 @@ public class GameState {
      * @param word The current word.
      * @return A string with underscores to represent hidden letters.
      */
-    public static String generateMysteryWord(String word) {
+    private String generateMysteryWord(String word) {
         StringBuilder mysteryWord = new StringBuilder();
         for (int i = 0; i < word.length(); i++) {
             mysteryWord.append("_");
@@ -69,12 +77,16 @@ public class GameState {
     }
 
     // Add comment when logic is tested
-    public void trackPlayerLives(int lives, boolean gameOver, boolean hasWon) {
-        if (lives == 0) {
-            gameOver = true;
-        }
-        if (!hiddenWord.contains("_")) {
-            hasWon = true;
+    public boolean checkProgress() {
+        return getPlayerLives() <= 0 || !getHiddenWord().contains("_");
+    }
+
+    //add comment
+    public void showEndGameMessage() {
+        if (getPlayerLives() > 0) {
+            System.out.println("Congratulations, you won! The word was: " + getCurrentWord());
+        } else {
+            System.out.println("Game over! The word was: " + getCurrentWord());
         }
     }
 
