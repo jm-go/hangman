@@ -1,6 +1,7 @@
 package org.hangman;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GameState {
 
@@ -57,14 +58,11 @@ public class GameState {
      * @return A string with underscores to represent hidden letters.
      */
     private String generateMysteryWord(String word) {
-        StringBuilder mysteryWord = new StringBuilder();
+        char[] wordAsArray = word.toCharArray();
         for (int i = 0; i < word.length(); i++) {
-            mysteryWord.append("_");
-            if (i < word.length() - 1) {
-                mysteryWord.append(" ");
-            }
+            wordAsArray[i] = '_';
         }
-        return mysteryWord.toString();
+        return new String(wordAsArray);
     }
 
     /**
@@ -84,6 +82,14 @@ public class GameState {
             }
         }
         return new String(mysteryWordArray);
+    }
+
+    public void displayGameStatus() {
+        String wordWithUnderscores = getHiddenWord();
+        System.out.print("Mystery Word: ");
+        for (int i = 0; i < wordWithUnderscores.length(); i++) {
+            System.out.print(wordWithUnderscores.charAt(i) + " ");
+        }
     }
 
     /**
@@ -116,6 +122,7 @@ public class GameState {
     public void appendGuessedLetters(char letter) {
         if (!guessedLetters.contains(letter)) {
             guessedLetters.add(letter);
+            Collections.sort(guessedLetters);
         }
     }
 }

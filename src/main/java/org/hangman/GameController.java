@@ -1,7 +1,5 @@
 package org.hangman;
 
-import java.util.Collections;
-
 public class GameController {
 
     private PlayerInteraction commands;
@@ -9,7 +7,7 @@ public class GameController {
 
     public GameController() {
         commands = new PlayerInteraction();
-        String[] commandOptions = new String[]{"Regular", "Advanced", "Quit"};
+        String[] commandOptions = new String[]{"Play Regular Level", "Play Advanced Level", "Quit Game"};
         commands.setCommands(commandOptions);
     }
 
@@ -37,7 +35,7 @@ public class GameController {
                     System.out.println("\nQuitting the game. Goodbye!");
                     return;
                 default:
-                    System.out.println("Invalid input. Please select a valid option.");
+                    System.out.println("\nInvalid input. Please select a valid option.");
                     break;
             }
         }
@@ -72,8 +70,8 @@ public class GameController {
         boolean endOfGame = false;
         while (!endOfGame) {
 
-            System.out.println("Mystery Word: " + gameState.getHiddenWord());
-            Collections.sort(gameState.getGuessedLetters());
+            gameState.displayGameStatus();
+            System.out.println();
             System.out.println("Guessed letters: " + gameState.getGuessedLetters());
             char guessedLetter = commands.getLetterInput();
 
@@ -87,10 +85,10 @@ public class GameController {
                             guessedLetter, gameState.getHiddenWord(), gameState.getCurrentWord());
                     gameState.setHiddenWord(updatedHiddenWord);
 
-                    System.out.println("Correct guess!");
+                    System.out.println("Correct guess! Lives remaining: " + gameState.getPlayerLives() + "\n");
                 } else {
                     gameState.decrementPlayerLives();
-                    System.out.println("Incorrect guess. Lives remaining: " + gameState.getPlayerLives());
+                    System.out.println("Incorrect guess. Lives remaining: " + gameState.getPlayerLives() + "\n");
                 }
             }
             Gallows.displayGallows(gameState.getPlayerLives());
