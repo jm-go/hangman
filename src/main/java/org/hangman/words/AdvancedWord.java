@@ -1,12 +1,10 @@
 package org.hangman.words;
 
-import org.hangman.words.Word;
-
 import java.util.Random;
 
 public class AdvancedWord extends Word {
 
-    private static final String[] words = {
+    private static final String[] WORDS = {
             "Acceleration", "Biotechnology", "Consequential",
             "Encapsulation", "Fingerprint", "Gravitational",
             "Illumination", "Kaleidoscope", "Ornithology",
@@ -16,7 +14,7 @@ public class AdvancedWord extends Word {
             "Anthropologist", "Philosophical"
     };
 
-    private static final int lives = 3;
+    private static final int LIVES = 3;
 
     /**
      * Selects a random word from an array of words.
@@ -26,8 +24,8 @@ public class AdvancedWord extends Word {
     @Override
     public String selectRandomWord() {
         Random random = new Random();
-        int randomIndex = random.nextInt(words.length);
-        return words[randomIndex];
+        int randomIndex = random.nextInt(WORDS.length);
+        return WORDS[randomIndex];
     }
 
     /**
@@ -38,6 +36,6 @@ public class AdvancedWord extends Word {
      */
     @Override
     public int getLives() {
-        return lives;
+        return LIVES;
     }
 }

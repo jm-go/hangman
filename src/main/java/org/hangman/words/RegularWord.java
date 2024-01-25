@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RegularWord extends Word {
 
-    private static final String[] words = {
+    private static final String[] WORDS = {
             "Balloon", "Elephant", "Flamingo",
             "Glitter", "Harmony", "Infinite",
             "Jigsaw", "Keyboard", "Lantern",
@@ -13,7 +13,7 @@ public class RegularWord extends Word {
             "Sunlight", "Treasure", "Umbrella",
             "Volcano", "Whistle"
     };
-    private static final int lives = 6;
+    private static final int LIVES = 6;
 
     /**
      * Selects a random word from an array of words.
@@ -23,8 +23,8 @@ public class RegularWord extends Word {
     @Override
     public String selectRandomWord() {
         Random random = new Random();
-        int randomIndex = random.nextInt(words.length);
-        return words[randomIndex];
+        int randomIndex = random.nextInt(WORDS.length);
+        return WORDS[randomIndex];
     }
 
     /**
@@ -34,6 +34,6 @@ public class RegularWord extends Word {
      */
     @Override
     public int getLives() {
-        return lives;
+        return LIVES;
     }
 }

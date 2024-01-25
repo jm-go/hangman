@@ -2,7 +2,7 @@ package org.hangman.ui;
 
 public class Gallows {
 
-    public static String[] gallows = {
+    public static final String[] GALLOWS = {
             "+---+    \n" +
                     "|   |    \n" +
                     "|       \n" +
@@ -70,6 +70,6 @@ public class Gallows {
         if (index < 0) {
             index = 0;
         }
-        System.out.println(gallows[index]);
+        System.out.println(GALLOWS[index]);
     }
 }
