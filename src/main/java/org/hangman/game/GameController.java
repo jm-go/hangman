@@ -1,4 +1,10 @@
-package org.hangman;
+package org.hangman.game;
+
+import org.hangman.ui.Gallows;
+import org.hangman.ui.PlayerInteraction;
+import org.hangman.words.AdvancedWord;
+import org.hangman.words.RegularWord;
+import org.hangman.words.Word;
 
 public class GameController {
 

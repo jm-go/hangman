@@ -1,4 +1,6 @@
-package org.hangman;
+package org.hangman.game;
+
+import org.hangman.words.Word;
 
 import java.util.ArrayList;
 
@@ -70,9 +72,8 @@ public class GameState {
      * @param letter      The letter guessed by the player.
      * @param mysteryWord The current hidden representation of the word.
      * @param currentWord The actual word the player is trying to guess.
-     * @return The updated hidden representation of the word.
      */
-    public String updateMysteryWord(char letter, String mysteryWord, String currentWord) {
+    public void updateMysteryWord(char letter, String mysteryWord, String currentWord) {
         char[] currentWordArray = currentWord.toCharArray();
         char[] mysteryWordArray = mysteryWord.toCharArray();
         for (int i = 0; i < currentWordArray.length; i++) {
@@ -80,7 +81,7 @@ public class GameState {
                 mysteryWordArray[i] = letter;
             }
         }
-        return new String(mysteryWordArray);
+        setHiddenWord(new String(mysteryWordArray));
     }
 
     /**

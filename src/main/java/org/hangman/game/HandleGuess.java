@@ -1,4 +1,4 @@
-package org.hangman;
+package org.hangman.game;
 
 import java.util.Collections;
 
@@ -25,9 +25,7 @@ public class HandleGuess {
         appendGuessedLetters(guessedLetter);
 
         if (gameState.getCurrentWord().contains(String.valueOf(guessedLetter))) {
-            String updatedHiddenWord = gameState.updateMysteryWord(
-                    guessedLetter, gameState.getHiddenWord(), gameState.getCurrentWord());
-            gameState.setHiddenWord(updatedHiddenWord);
+            gameState.updateMysteryWord(guessedLetter, gameState.getHiddenWord(), gameState.getCurrentWord());
             System.out.println("Correct guess! Lives remaining: " + gameState.getPlayerLives() + "\n");
         } else {
             gameState.decrementPlayerLives();
@@ -40,7 +38,7 @@ public class HandleGuess {
      *
      * @param letter The letter guessed by the player.
      */
-    public void appendGuessedLetters(char letter) {
+    private void appendGuessedLetters(char letter) {
         if (!gameState.getGuessedLetters().contains(letter)) {
             gameState.getGuessedLetters().add(letter);
             Collections.sort(gameState.getGuessedLetters());

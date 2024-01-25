@@ -1,4 +1,4 @@
-package org.hangman;
+package org.hangman.words;
 
 import java.util.Random;
 

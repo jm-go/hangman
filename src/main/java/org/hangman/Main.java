@@ -1,5 +1,7 @@
 package org.hangman;
 
+import org.hangman.game.GameController;
+
 public class Main {
     public static void main(String[] args) {
 

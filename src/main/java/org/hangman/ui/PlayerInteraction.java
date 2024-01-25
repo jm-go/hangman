@@ -1,4 +1,4 @@
-package org.hangman;
+package org.hangman.ui;
 
 import java.util.Scanner;
 
