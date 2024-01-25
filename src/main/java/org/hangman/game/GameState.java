@@ -1,7 +1,8 @@
-package org.hangman;
+package org.hangman.game;
+
+import org.hangman.words.Word;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class GameState {
 
@@ -71,9 +72,8 @@ public class GameState {
      * @param letter      The letter guessed by the player.
      * @param mysteryWord The current hidden representation of the word.
      * @param currentWord The actual word the player is trying to guess.
-     * @return The updated hidden representation of the word.
      */
-    public String updateMysteryWord(char letter, String mysteryWord, String currentWord) {
+    public void updateMysteryWord(char letter, String mysteryWord, String currentWord) {
         char[] currentWordArray = currentWord.toCharArray();
         char[] mysteryWordArray = mysteryWord.toCharArray();
         for (int i = 0; i < currentWordArray.length; i++) {
@@ -81,9 +81,13 @@ public class GameState {
                 mysteryWordArray[i] = letter;
             }
         }
-        return new String(mysteryWordArray);
+        setHiddenWord(new String(mysteryWordArray));
     }
 
+    /**
+     * Displays the current status of the game.
+     * Shows the mystery word and a list of already used letters.
+     */
     public void displayGameStatus() {
         String wordWithUnderscores = getHiddenWord();
         System.out.print("Mystery Word: ");
@@ -109,21 +113,9 @@ public class GameState {
      */
     public void showEndGameMessage() {
         if (getPlayerLives() > 0) {
-            System.out.println("Congratulations, you won! The word was: " + this.getCurrentWord());
+            System.out.println("Congratulations, you won! The word was: " + this.getCurrentWord() + "\n");
         } else {
-            System.out.println("Game over! The word was: " + this.getCurrentWord());
-        }
-    }
-
-    /**
-     * Appends a guessed letters array with new letters.
-     *
-     * @param letter The letter guessed by the player.
-     */
-    public void appendGuessedLetters(char letter) {
-        if (!guessedLetters.contains(letter)) {
-            guessedLetters.add(letter);
-            Collections.sort(guessedLetters);
+            System.out.println("Game over! The word was: " + this.getCurrentWord() + "\n");
         }
     }
 }

@@ -1,4 +1,11 @@
-package org.hangman;
+package org.hangman.game;
+
+import org.hangman.ui.Gallows;
+import org.hangman.ui.PlayerInteraction;
+import org.hangman.words.AdvancedWord;
+import org.hangman.words.BeginnerWord;
+import org.hangman.words.RegularWord;
+import org.hangman.words.Word;
 
 public class GameController {
 
@@ -7,7 +14,7 @@ public class GameController {
 
     public GameController() {
         commands = new PlayerInteraction();
-        String[] commandOptions = new String[]{"Play Regular Level", "Play Advanced Level", "Quit Game"};
+        String[] commandOptions = new String[]{"Play Beginner Level", "Play Regular Level", "Play Advanced Level", "Quit Game"};
         commands.setCommands(commandOptions);
     }
 
@@ -17,7 +24,7 @@ public class GameController {
      * levels or quitting. Invalid inputs prompt for a correct selection.
      */
     public void startGame() {
-        System.out.println("\nWelcome to Hangman!");
+        System.out.println("\nWelcome to Hangman!" + "\n");
         System.out.println("Please choose the level of difficulty:");
 
         while (true) {
@@ -26,12 +33,15 @@ public class GameController {
 
             switch (intInput) {
                 case 0:
-                    startRegularGame();
+                    startBeginnerGame();
                     break;
                 case 1:
-                    startAdvancedGame();
+                    startRegularGame();
                     break;
                 case 2:
+                    startAdvancedGame();
+                    break;
+                case 3:
                     System.out.println("\nQuitting the game. Goodbye!");
                     return;
                 default:
@@ -39,6 +49,17 @@ public class GameController {
                     break;
             }
         }
+    }
+
+    /**
+     * Initialises and starts a beginner-level Hangman game.
+     * Selects a word from the BeginnerWord class, and then
+     * transitions to the main gameplay loop.
+     */
+    private void startBeginnerGame() {
+        System.out.println("\nStarting a Beginner game...\n");
+        currentWord = new BeginnerWord();
+        playGame();
     }
 
     /**
@@ -66,31 +87,15 @@ public class GameController {
     // Add comment when the function is refactored
     private void playGame() {
         GameState gameState = new GameState(currentWord);
-        Gallows.displayGallows(gameState.getPlayerLives());
-        boolean endOfGame = false;
-        while (!endOfGame) {
+        HandleGuess handleGuess = new HandleGuess(gameState);
 
+        Gallows.displayGallows(gameState.getPlayerLives());
+
+        while (!gameState.checkProgress()) {
             gameState.displayGameStatus();
             char guessedLetter = commands.getLetterInput();
-
-            if (gameState.getGuessedLetters().contains(guessedLetter)) {
-                System.out.println("You have already guessed the letter: " + guessedLetter);
-            } else {
-                gameState.appendGuessedLetters(guessedLetter);
-
-                if (gameState.getCurrentWord().contains(String.valueOf(guessedLetter))) {
-                    String updatedHiddenWord = gameState.updateMysteryWord(
-                            guessedLetter, gameState.getHiddenWord(), gameState.getCurrentWord());
-                    gameState.setHiddenWord(updatedHiddenWord);
-
-                    System.out.println("Correct guess! Lives remaining: " + gameState.getPlayerLives() + "\n");
-                } else {
-                    gameState.decrementPlayerLives();
-                    System.out.println("Incorrect guess. Lives remaining: " + gameState.getPlayerLives() + "\n");
-                }
-            }
+            handleGuess.checkGuess(guessedLetter);
             Gallows.displayGallows(gameState.getPlayerLives());
-            endOfGame = gameState.checkProgress();
         }
         gameState.showEndGameMessage();
     }
