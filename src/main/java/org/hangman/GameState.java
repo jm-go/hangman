@@ -30,7 +30,6 @@ public class GameState {
         this.hiddenWord = hiddenWord;
     }
 
-
     public ArrayList<Character> getGuessedLetters() {
         return guessedLetters;
     }
@@ -46,7 +45,7 @@ public class GameState {
      * @param word The current word.
      * @return A string with underscores to represent hidden letters.
      */
-    public String generateMysteryWord(String word) {
+    public static String generateMysteryWord(String word) {
         StringBuilder mysteryWord = new StringBuilder();
         for (int i = 0; i < word.length(); i++) {
             mysteryWord.append("_");

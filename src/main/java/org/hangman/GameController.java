@@ -41,6 +41,7 @@ public class GameController {
 
     private void startRegularGame() {
         System.out.println("\nStarting a regular game...");
+        System.out.println();
         currentWord = new RegularWord();
         playerLives = 6;
         playGame();
@@ -48,6 +49,7 @@ public class GameController {
 
     private void startAdvancedGame() {
         System.out.println("\nStarting an advanced game...");
+        System.out.println();
         currentWord = new AdvancedWord();
         playerLives = 3;
         playGame();
@@ -56,6 +58,9 @@ public class GameController {
     private void playGame() {
         String wordToGuess = currentWord.selectRandomWord();
         Gallows.displayGallows(playerLives);
+        System.out.println(GameState.generateMysteryWord(wordToGuess));
+        System.out.println("You have " + playerLives + " lives left.\n");
+        System.out.println();
 
         // Add logic
     }

@@ -44,4 +44,23 @@ public class Commands {
         }
     }
 
+    /**
+     * Reads a single uppercase letter input from the user.
+     * Validates the input to ensure it's a single character from A-Z
+     * and repeats the prompt if needed.
+     *
+     * @return The validated uppercase letter as a char.
+     */
+    public char getLetterInput() {
+        System.out.print("Enter a letter (A-Z): ");
+        while (true) {
+            String input = scanner.nextLine().trim();
+            if (input.length() == 1 && input.matches("[a-zA-Z]")) {
+                return input.toUpperCase().charAt(0);
+            } else {
+                System.out.println("Invalid input. Please enter a single letter (A-Z).");
+            }
+        }
+    }
+
 }
