@@ -1,39 +1,18 @@
 package org.hangman;
 
-import java.util.Random;
-
-public class Word {
-
-    private static final String[] regularLevel = {
-            "Balloon", "Elephant", "Flamingo",
-            "Glitter", "Harmony", "Infinite",
-            "Jigsaw", "Keyboard", "Lantern",
-            "Mountain", "Necklace", "Octagon",
-            "Painting", "Question", "Rainbow",
-            "Sunlight", "Treasure", "Umbrella",
-            "Volcano", "Whistle"
-    };
-
-    private static final String[] advancedLevel = {
-            "Acceleration", "Biotechnology", "Consequential",
-            "Encapsulation", "Fingerprint", "Gravitational",
-            "Illumination", "Kaleidoscope", "Ornithology",
-            "Photosynthesis", "Questionnaire", "Synchronization",
-            "Boulevard", "Silhouette", "Misinterpretation",
-            "Unpredictable", "Inconsequential", "Disproportionate",
-            "Anthropologist", "Philosophical"
-    };
+public abstract class Word {
 
     /**
-     * Selects a random word from an array of words.
+     * Abstract method to select a random word.
      *
-     * @param words An array of words from which to select a random word.
-     * @return A randomly selected word from the array.
+     * @return A randomly selected word.
      */
-    public static String selectRandomWord(String[] words) {
-        Random random = new Random();
-        int randomIndex = random.nextInt(words.length);
-        return words[randomIndex];
-    }
+    public abstract String selectRandomWord();
 
+    /**
+     * Retrieves the number of player's lives based on the chosen difficulty level.
+     *
+     * @return The number of lives for the game.
+     */
+    public abstract int getLives();
 }
