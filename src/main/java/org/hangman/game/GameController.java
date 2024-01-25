@@ -24,7 +24,7 @@ public class GameController {
      * levels or quitting. Invalid inputs prompt for a correct selection.
      */
     public void startGame() {
-        System.out.println("\nWelcome to Hangman!");
+        System.out.println("\nWelcome to Hangman!" + "\n");
         System.out.println("Please choose the level of difficulty:");
 
         while (true) {

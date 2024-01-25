@@ -26,10 +26,10 @@ public class HandleGuess {
 
         if (gameState.getCurrentWord().contains(String.valueOf(guessedLetter))) {
             gameState.updateMysteryWord(guessedLetter, gameState.getHiddenWord(), gameState.getCurrentWord());
-            System.out.println("Correct guess! Lives remaining: " + gameState.getPlayerLives() + "\n");
+            System.out.println("\nCorrect guess! Lives remaining: " + gameState.getPlayerLives() + "\n");
         } else {
             gameState.decrementPlayerLives();
-            System.out.println("Incorrect guess. Lives remaining: " + gameState.getPlayerLives() + "\n");
+            System.out.println("\nIncorrect guess. Lives remaining: " + gameState.getPlayerLives() + "\n");
         }
     }
 

@@ -113,9 +113,9 @@ public class GameState {
      */
     public void showEndGameMessage() {
         if (getPlayerLives() > 0) {
-            System.out.println("Congratulations, you won! The word was: " + this.getCurrentWord());
+            System.out.println("Congratulations, you won! The word was: " + this.getCurrentWord() + "\n");
         } else {
-            System.out.println("Game over! The word was: " + this.getCurrentWord());
+            System.out.println("Game over! The word was: " + this.getCurrentWord() + "\n");
         }
     }
 }
