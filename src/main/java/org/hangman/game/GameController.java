@@ -84,7 +84,11 @@ public class GameController {
         playGame();
     }
 
-    // Add comment when the function is refactored
+    /**
+     * Manages the main gameplay loop of Hangman. Initialises the game state, processes player guesses,
+     * and updates the game display until the game ends - by guessing the word correctly
+     * or losing all lives.
+     */
     private void playGame() {
         GameState gameState = new GameState(currentWord);
         HandleGuess handleGuess = new HandleGuess(gameState);
@@ -94,7 +98,7 @@ public class GameController {
         while (!gameState.checkProgress()) {
             gameState.displayGameStatus();
             char guessedLetter = commands.getLetterInput();
-            handleGuess.checkGuess(guessedLetter);
+            handleGuess.validateGuess(guessedLetter);
             Gallows.displayGallows(gameState.getPlayerLives());
         }
         gameState.showEndGameMessage();

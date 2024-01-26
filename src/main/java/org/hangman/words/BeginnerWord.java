@@ -30,7 +30,7 @@ public class BeginnerWord extends Word {
     /**
      * Gets the number of lives for the regular level of the game.
      *
-     * @return The fixed number of lives for beginner words, which is 8.
+     * @return The fixed number of lives for beginner words (8).
      */
     @Override
     public int getLives() {

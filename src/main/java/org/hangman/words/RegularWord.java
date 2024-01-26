@@ -30,7 +30,7 @@ public class RegularWord extends Word {
     /**
      * Gets the number of lives for the regular level of the game.
      *
-     * @return The fixed number of lives for regular words, which is 6.
+     * @return The fixed number of lives for regular words (6).
      */
     @Override
     public int getLives() {

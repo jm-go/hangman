@@ -54,7 +54,7 @@ public class PlayerInteraction {
     }
 
     /**
-     * Reads a single uppercase letter input from the user.
+     * Reads a single letter input from the user.
      * Validates the input to ensure it's a single character from A-Z
      * and repeats the prompt if needed.
      *

@@ -11,15 +11,15 @@ public class HandleGuess {
     }
 
     /**
-     * Processes the player's guessed letter.
+     * Validates the player's guessed letter.
      * Checks if the letter was already guessed, updates the game state,
      * and prints a message for the player.
      *
      * @param guessedLetter The letter guessed by the player.
      */
-    public void checkGuess(char guessedLetter) {
+    public void validateGuess(char guessedLetter) {
         if (gameState.getGuessedLetters().contains(guessedLetter)) {
-            System.out.println("You have already guessed the letter: " + guessedLetter);
+            System.out.println("\nYou have already guessed the letter: " + guessedLetter + "\n");
             return;
         }
         appendGuessedLetters(guessedLetter);

@@ -32,7 +32,7 @@ public class AdvancedWord extends Word {
      * Gets the number of lives for the advanced level of the game.
      * This level grants fewer lives due to higher difficulty.
      *
-     * @return The fixed number of lives for advanced words, which is 3.
+     * @return The fixed number of lives for advanced words (3).
      */
     @Override
     public int getLives() {
