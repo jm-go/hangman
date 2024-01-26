@@ -98,7 +98,7 @@ public class GameController {
         while (!gameState.checkProgress()) {
             gameState.displayGameStatus();
             char guessedLetter = commands.getLetterInput();
-            handleGuess.checkGuess(guessedLetter);
+            handleGuess.validateGuess(guessedLetter);
             Gallows.displayGallows(gameState.getPlayerLives());
         }
         gameState.showEndGameMessage();
