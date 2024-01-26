@@ -15,6 +15,11 @@ difficulty.
     - **Advanced Level**: Words with 9 or more characters and 3 lives.
 - **Interactive Player Commands**: Allows players to choose the level of difficulty and input their guesses.
 
+<p align="center">
+  <img src="src/assets/intro.png" alt="Hangman Interface" width="180">&nbsp&nbsp&nbsp&nbsp&nbsp
+  <img src="src/assets/hangman-progress.png" alt="Hangman Game In Progress" width="180">
+</p>
+
 ## How to Run
 
 Make sure you have Java installed on your system. To run the Hangman game:
@@ -24,7 +29,7 @@ Make sure you have Java installed on your system. To run the Hangman game:
 
 ## Gameplay
 
-1. Upon starting the game, players are greeted with a welcome message and prompted to choose a difficulty level.
+1. Upon start, player is greeted with a welcome message and prompted to choose a difficulty level.
 2. The player inputs their guess one letter at a time.
 3. The game provides feedback on each guess and updates the gallows display accordingly.
 4. The game ends either when the player successfully guesses the word or loses all their lives.
