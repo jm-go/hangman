@@ -34,10 +34,14 @@ Make sure you have Java installed on your system. To run the Hangman game:
 3. The game provides feedback on each guess and updates the gallows display accordingly.
 4. The game ends either when the player successfully guesses the word or loses all their lives.
 
+## Testing
+
+The project includes unit tests for critical components to ensure reliability and accuracy. Key game logic classes, such as `HandleGuess` and `GameState`, are tested to maintain the integrity of the game mechanics.
+
 ## Future Enhancements
 
 - Addition of more words and hints for each difficulty level.
-- Implementation of unit tests to ensure the reliability of the game logic.
+- Further expansion of unit tests to cover additional components of the game.
 
 ## Contact
 

@@ -34,7 +34,6 @@ class HandleGuessTest {
     void validateGuess_AlreadyGuessed_NoLivesLost() {
         handleGuess.validateGuess('A');
         handleGuess.validateGuess('A');
-
         assertEquals(8, gameState.getPlayerLives());
         assertTrue(gameState.getGuessedLetters().contains('A'));
     }
@@ -43,7 +42,6 @@ class HandleGuessTest {
     @DisplayName("Correct guess reveals the letter without losing a life.")
     void validateGuess_CorrectGuess_LetterRevealed() {
         handleGuess.validateGuess('A');
-
         assertEquals("_A___", gameState.getHiddenWord());
         assertEquals(8, gameState.getPlayerLives());
     }
@@ -52,7 +50,6 @@ class HandleGuessTest {
     @DisplayName("Incorrect guess decrements the number of lives.")
     void validateGuess_IncorrectGuess_LivesDecremented() {
         handleGuess.validateGuess('Z');
-
         assertEquals(7, gameState.getPlayerLives());
         assertTrue(gameState.getGuessedLetters().contains('Z'));
     }
