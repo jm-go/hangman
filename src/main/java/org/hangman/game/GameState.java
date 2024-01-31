@@ -53,7 +53,7 @@ public class GameState {
 
     /**
      * Generates a hidden version of the current word with underscores
-     * to represent hidden letters, separated by spaces.
+     * to represent hidden letters.
      *
      * @param word The current word.
      * @return A string with underscores to represent hidden letters.
